@@ -6,27 +6,29 @@
     box-sizing: border-box;
 }
 
-body{
-    height: 200vh;
-    width: 100vw;
+body::-webkit-scrollbar{
+    width: 0;
 }
 
-
-
 .main-container{
-    font-family: "Roboto", serif;
-    height: 100vh;
+    font-family: "Poppins", serif;
     width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background: url(./Assets/bg-img.jpg);
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .inputs{
-    background: rgba(0, 0, 0, 0);
     width: 100%;
-    height: 20%;
+    height: 100px;
     position: sticky;
+    z-index: 9;
     left: 0;
     top: 0;
     display: flex;
@@ -35,28 +37,38 @@ body{
 }
 
 .search-field{
-    width: 28%;
+    width: 380px;
     border-radius: 100px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
+    backdrop-filter: blur(50px);
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 
 .main-head{
-    font-family: "Roboto", serif;
+    font-family: "Poppins", serif;
     font-weight: 500;
+    color: #fff;
     text-align: center;
+    -webkit-text-stroke: 1px rgba(232, 122, 213, 0.5);
 }
 
 .search-ip{
+    font-family: "Poppins", serif;
     padding: 5px 50px;
-    border-radius: 100px;
+    border-radius: 100px 0 0 100px;
+    background: rgba(255, 255, 255, 0.0);
     font-size: 18px;
     text-align: center;
     border: none;
     transition: all 0.5s ease;
+}
+
+.search-ip::placeholder{
+    font-family: "Poppins", serif;
+    color: white;
 }
 
 .search-ip:focus-within{
@@ -65,22 +77,52 @@ body{
 
 .search-field svg{
     margin-left: 12px;
-    border-radius: 0 100px 100px 0;
+    border-radius: 50%;
+}
+
+.search-field:hover{
+    cursor: pointer;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.4);
+    background: rgba(255,255, 255, 0.5);
+}
+
+.search-ip:focus {
+    outline: 0.5px solid black;
+    border-right: none;
 }
 
 .photo-container{
-    width: 80%;
+    font-family: "Poppins", serif;
+    width: 95%;
     margin: 0 auto;
+    display: flex;
+    min-height: calc(100% - 138.5px);
+    overflow-y: scroll;
+    flex-wrap:wrap;
+    gap: 35px;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-container::-webkit-scrollbar{
+    width: 5px;
+}
+
+.photo-container::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .card{
     overflow: hidden;
-    height: 300px;
-    width: 300px;
-    border: 1px solid black;
+    height: 230px;
+    width: 260px;
+    border: 1px solid rgba(255,255,255,0.6);
     border-radius: 10px;
-    padding: 5px;
-    background: #000;
+    margin-bottom: 30px;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
     position: relative;
     transition: all 0.2s ease;
 }
@@ -88,9 +130,11 @@ body{
 .img-div{
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 .card .img-div img{
+    object-fit: fill;
     height: 100%;
     width: 100%;
     border-radius: 10px;
@@ -100,29 +144,55 @@ body{
     border-radius: 20px;
     padding: 10px;
     background-color: #fff;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    font-size: 13px;
     opacity: 0;
+    text-align: center;
     z-index: -999;
+}
+
+.showmore-Btn{
+    height: 50px;
+    width: 100px;
+    padding: 5px 10px;
+    border-radius: 1000px;
+    margin: 20px;
+    color: white;
+    background: linear-gradient(90deg, #c94b4b 0%, #4b134f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.showmore-Btn:hover{
+    cursor: pointer;
+    box-shadow: -70px 0 100px 10px #4b134f , 70px 0 100px 10px #c94b4b;
+}
+
+.img-div img{
+    transition: all 0.5s ease;
 }
 
 .card:hover{
     overflow: visible;
 }
 
+.card:hover .img-div img{
+    scale: 1.1;
+}
+
 .card:hover .desc-div{
-    animation: pop 1s ease forwards;
+    animation: pop .4s ease forwards;
 }
 
 
 @keyframes pop {
-    50%{
+    0%{
         opacity: 0;
-        transform: translateY(-80px);
-    }
-    80%{
-        opacity: 0.3;
+        transform: translateY(-80pX);
     }
     100%{
         opacity: 1;
-        transform: translateY(-20px);
+        transform: translateY(-10px);
     }
 }
