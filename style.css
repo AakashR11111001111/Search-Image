@@ -196,3 +196,12 @@ body::-webkit-scrollbar{
         transform: translateY(-10px);
     }
 }
+
+@media screen and (max-width:500px) {
+    .search-field{
+        width: 80%;
+    }
+    .search-ip{
+        width: 80%;
+    }
+}
